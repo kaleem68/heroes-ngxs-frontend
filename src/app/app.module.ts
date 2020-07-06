@@ -9,18 +9,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../app/material/material.module';
 
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './store/entity-metadata';
+
+import { AppStoreModule } from './store/app-store.module';
+import { FormsModule } from '@angular/forms';
+import { DisplayComponent } from './display/display.component';
+import { HeroesComponent } from './heroes/heroes/heroes.component';
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DisplayComponent,
+    HeroesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AppStoreModule,
+    FormsModule,
+    EntityDataModule.forRoot(entityConfig)
 
   ],
   providers: [],

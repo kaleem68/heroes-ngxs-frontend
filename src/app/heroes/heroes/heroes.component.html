@@ -1,0 +1,26 @@
+heroes compnent start;
+our heroes
+<div *ngIf="heroes$ | async as heroes">
+  <div *ngFor="let h of heroes">
+    {{h.name}}
+  </div>
+</div>
+
+
+add hero
+<div class="example-container">
+
+  <mat-form-field>
+    <mat-label>Name of hero</mat-label>
+    <input matInput [(ngModel)]="hero.name" name="asad">
+  </mat-form-field>
+  <br>
+
+  <mat-form-field>
+    <mat-label>Saying of hero</mat-label>
+    <input matInput [(ngModel)]="hero.saying" name="ff">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button (click)="saveHero()">save hero</button>
+
+</div>

@@ -1,0 +1,13 @@
+navbar starts
+<br>
+SAGAR SHAHS PROUD STUDENTS
+<div *ngIf="heroes$ | async as heroes">
+  <div *ngFor="let h of heroes">
+    {{h.name}}
+  </div>
+</div>
+narbar ends
+<br>
+<hr>
+  <span style="color:red">we have {{heroesCount$| async}} </span>
+<hr>
