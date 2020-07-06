@@ -13,8 +13,11 @@ import { FormsModule } from '@angular/forms';
 import { DisplayComponent } from './display/display.component';
 import { HeroesComponent } from './heroes/heroes/heroes.component';
 
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin'
 
-
+import { HeroState } from "../app/heroes/store/hero.state";
 
 @NgModule({
   declarations: [
@@ -29,6 +32,14 @@ import { HeroesComponent } from './heroes/heroes/heroes.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+
+    NgxsModule.forRoot([
+      HeroState
+    ]),
+
+  NgxsReduxDevtoolsPluginModule.forRoot(),
+  NgxsLoggerPluginModule.forRoot(),
+
 
   ],
   providers: [],
