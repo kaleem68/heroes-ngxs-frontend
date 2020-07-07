@@ -23,13 +23,15 @@ import { LoginComponent } from './shared/ngxs-store/authentication/login/login.c
 import { AuthState } from './shared/ngxs-store/authentication/authentication.state';
 
 import { TokenInterceptorService } from '../app/shared/interceptors/token.interceptor.service';
+import { HeroListComponent } from './heroes/hero-list/hero-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayComponent,
     HeroesComponent,
-    LoginComponent
+    LoginComponent,
+    HeroListComponent
   ],
   imports: [
     BrowserModule,

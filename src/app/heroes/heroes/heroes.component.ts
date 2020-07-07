@@ -16,7 +16,9 @@ import { tap } from 'rxjs/operators';
 export class HeroesComponent implements OnInit,OnDestroy {
 
 
+   selected: Hero;
    hero: Hero = new Hero();
+
    areHeroesLoadedSub: Subscription;
 
    @Select (HeroState.getHeroesList) heroes$: Observable<Hero[]>;
@@ -37,6 +39,8 @@ export class HeroesComponent implements OnInit,OnDestroy {
     });
   }
 
+  getHeroes(){}
+  enableAddMode(){}
 
    saveHero(){
       this.store.dispatch(new AddHero(this.hero));
