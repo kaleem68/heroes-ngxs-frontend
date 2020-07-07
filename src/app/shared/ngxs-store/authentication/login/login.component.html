@@ -1,0 +1,17 @@
+Login Here
+<div class="example-container">
+  <mat-form-field>
+    <mat-label>username</mat-label>
+    <input matInput [(ngModel)]="loginRequest.username" name="username" />
+  </mat-form-field>
+  <br />
+
+  <mat-form-field>
+    <mat-label>password</mat-label>
+    <input matInput [(ngModel)]="loginRequest.password" name="password" />
+  </mat-form-field>
+  <br />
+  <button color="primary" mat-raised-button (click)="authentication()">
+    Login
+  </button>
+</div>

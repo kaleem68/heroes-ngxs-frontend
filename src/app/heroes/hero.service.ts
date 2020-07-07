@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Hero } from '../core/model/hero';
 
-export const API_URL = "http://localhost:8080/";
+export const API_URL = "http://localhost:8080";
 
 @Injectable({
   providedIn: 'root'

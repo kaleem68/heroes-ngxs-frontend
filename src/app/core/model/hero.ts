@@ -3,4 +3,3 @@ export class Hero {
   name: string;
   saying: string;
 }
-

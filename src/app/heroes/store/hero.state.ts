@@ -12,6 +12,7 @@ import { Hero } from '../../core/model/hero';
 import { HeroService } from '../hero.service';
 import { Injectable } from '@angular/core';
 
+///avoid using classes for StateModel.
 export class HeroeStateModel {
   Heroes: Hero[];
   areHeroesLoaded: boolean;
