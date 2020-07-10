@@ -1,34 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 
-import { Store } from '@ngxs/store'
-import { Login } from '../authentication.state';
+import { Store, Select } from '@ngxs/store'
+import { Login } from '../auth.state';
 
-export class LoginRequest{
-  username:string;
-  password:string;
+import { AuthState } from '../auth.state';
+import { Observable } from 'rxjs';
+
+export class LoginRequest {
+  username: string;
+  password: string;
 }
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private store: Store) { }
+  @Select(AuthState.error) error$: Observable<boolean>;
 
+  constructor(private store: Store){
+
+  }
   loginRequest: LoginRequest = new LoginRequest();
 
 
   ngOnInit(): void {
+
   }
 
-  authentication(){
+  authentication() {
 
     const authenticateUser = {
       username: this.loginRequest.username,
       password: this.loginRequest.password
     };
-     this.store.dispatch(new Login(authenticateUser));
+    this.store.dispatch(new Login(authenticateUser));
   }
+  // resetState(){
+  //   this.store.reset(AuthState);
+  // }
+
 }

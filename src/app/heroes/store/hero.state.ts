@@ -1,4 +1,5 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
+import { delay, catchError } from 'rxjs/operators';
 
 import {
   AddHero,
@@ -7,7 +8,6 @@ import {
   DeleteHero
 } from '../store/hero.actions'
 import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { Hero } from '../../core/model/hero';
 import { HeroService } from '../hero.service';
 import { Injectable } from '@angular/core';
@@ -15,14 +15,16 @@ import { Injectable } from '@angular/core';
 ///avoid using classes for StateModel.
 export class HeroeStateModel {
   Heroes: Hero[];
-  areHeroesLoaded: boolean;
+  loading: boolean;
+  error:boolean;
 }
 
 @State<HeroeStateModel>({
   name: 'Heroes',
   defaults: {
     Heroes: [],
-    areHeroesLoaded: false
+    loading: false,
+    error: false,
   }
 })
 
@@ -33,9 +35,8 @@ export class HeroeStateModel {
 
 export class HeroState {
 
-  // constructor(private heroService: HeroService, private router: Router) {}
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService) { }
 
   @Selector()
   static getHeroesList(state: HeroeStateModel) {
@@ -43,28 +44,50 @@ export class HeroState {
   }
 
   @Selector()
-  static areHeroesLoaded(state: HeroeStateModel) {
-    return state.areHeroesLoaded;
+  static loading(state: HeroeStateModel) {
+    return state.loading;
+  }
+
+  @Selector()
+  static error(state: HeroeStateModel) {
+    return state.error
   }
 
 
   @Action(GetHeroes)
-   getHeroes({ getState, setState }: StateContext<HeroeStateModel>) {
-    return this.heroService.getAllHeroes().pipe(
-      tap(result => {
-        const state = getState();
-        setState({
-          ...state,
-          Heroes: result,
-          areHeroesLoaded: true
-        });
-      })
-    );
+  getHeroes({ getState, setState, patchState }: StateContext<HeroeStateModel>) {
+
+    patchState({
+      loading: true
+    });
+
+
+    return this.heroService.getAllHeroes()
+      .pipe(delay(1000))
+      .pipe(
+        tap(result => {
+          const state = getState();
+          setState({
+            ...state,
+            Heroes: result,
+            loading: false,
+            error: false
+          });
+        }),
+        catchError(err => {
+          console.log('error')
+          return err;
+        }),
+
+      );
   }
 
   @Action(DeleteHero)
   deleteHero({ getState, setState }: StateContext<HeroeStateModel>,
     { id }: DeleteHero) {
+
+
+
     return this.heroService.deleteHero(id).pipe(
       tap(result => {
         const state = getState();
@@ -80,7 +103,7 @@ export class HeroState {
 
   @Action(UpdateHero)
   updateHero({ getState, setState }: StateContext<HeroeStateModel>,
-    { payload, id }: UpdateHero){
+    { payload, id }: UpdateHero) {
     return this.heroService.updateHero(id, payload).pipe(
       tap(result => {
         const state = getState();

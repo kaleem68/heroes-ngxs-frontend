@@ -1,3 +1,5 @@
+<app-toolbar></app-toolbar>
+
 <div class="control-panel">
   <div class="button-panel">
     <button
@@ -18,9 +20,12 @@
 
 <div class="content-container">
   <div class="list-container">
-      <div *ngIf="heroes$ | async as heroes">
-      <mat-spinner *ngIf="loading$ | async;else heroList"
-      mode="indeterminate" color="accent"></mat-spinner>
+    <div *ngIf="heroes$ | async as heroes">
+
+
+      <mat-spinner
+        *ngIf="loading$ | async ;else heroList"
+        mode="indeterminate" color="accent"></mat-spinner>
 
       <ng-template #heroList>
         <app-hero-list
@@ -28,38 +33,22 @@
         [selectedHero]="selected"
         (deleted)="delete($event)"
         (selected)="select($event)">
+
       </app-hero-list>
       </ng-template>
+
     </div>
   </div>
-</div>
-<!--
-heroes compnent start;
-our heroes
-<div *ngIf="heroes$ | async as heroes">
-  <div *ngFor="let h of heroes">
-    {{h.name}}
+
+  <div class="detail-container">
+    <app-hero-detail
+     *ngIf="selected"
+     [hero]="selected"
+     (unselect)="close()"
+     (update)="update($event)"
+     (add)="add($event)">
+    </app-hero-detail>
+
   </div>
+
 </div>
-
-
-
- add hero
-<div class="example-container">
-
-  <mat-form-field>
-    <mat-label>Name of hero</mat-label>
-    <input matInput [(ngModel)]="hero.name" name="asad">
-  </mat-form-field>
-  <br>
-
-  <mat-form-field>
-    <mat-label>Saying of hero</mat-label>
-    <input matInput [(ngModel)]="hero.saying" name="ff">
-  </mat-form-field>
-  <br>
-  <button
-  color="primary"
-  mat-raised-button (click)="saveHero()">save hero</button>
-
-</div> -->

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
 import {
   State,
   Selector,
   Action,
-  StateContext } from '@ngxs/store';
-import { from } from 'rxjs';
-
+  StateContext,
+  Store
+} from '@ngxs/store';
 
 /**
  * AuthStateModel = AuthenticationResponse
@@ -16,12 +16,14 @@ import { from } from 'rxjs';
 export interface AuthStateModel {
   token: string | null;
   username: string | null;
+  error: boolean
 }
 
 export class Login {
   static readonly type = '[Auth] Login';
-  constructor(public payload: { username: string; password: string }) {}
+  constructor(public payload: { username: string; password: string }) { }
 }
+
 
 export class Logout {
   static readonly type = '[Auth] Logout';
@@ -31,7 +33,8 @@ export class Logout {
   name: 'auth',
   defaults: {
     token: null,
-    username: null
+    username: null,
+    error: false
   }
 })
 
@@ -45,45 +48,52 @@ export class AuthState {
   static token(state: AuthStateModel): string | null {
     return state.token;
   }
-
   @Selector()
   static isAuthenticated(state: AuthStateModel): boolean {
     return !!state.token;
   }
+  @Selector()
+  static error(state: AuthStateModel) {
+    return state.error
+  }
 
-  constructor(private authService: AuthService ) {}
+  constructor(private authService: AuthService, private store: Store) { }
 
   @Action(Login)
   login(ctx: StateContext<AuthStateModel>, action: Login) {
-      console.log('inside login action')
+
     return this.authService.login(action.payload).pipe(
-      // tap((result: { token: string }) => {
-      tap((result: { username:string,token: string }) => {
-      ctx.patchState({
-          token: result.token,
-           username: action.payload.username
-          // username: result.username
-        });
-      })
-    );
+      tap(
+        (result: { username: string, token: string }) => {
+          ctx.patchState({
+            token: result.token,
+            username: result.username,
+            error: false
+          });
+        },
+        (error) => {
+          ctx.patchState({
+            error: true
+          });
+          return error;
+        }
+
+      )
+
+    )
+
+
   }
 
   @Action(Logout)
   logout(ctx: StateContext<AuthStateModel>) {
     const state = ctx.getState();
-        ctx.setState({
-          token: null,
-          username: null
-        });
+    ctx.setState({
+      token: null,
+      username: null,
+      error: false
+    });
 
-    // return this.authService.logout(state.token).pipe(
-    //   tap(() => {
-    //     ctx.setState({
-    //       token: null,
-    //       username: null
-    //     });
-    //   })
-    // );
 
   }
 

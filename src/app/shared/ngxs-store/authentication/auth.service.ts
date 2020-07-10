@@ -13,7 +13,6 @@ export class AuthService {
 
 
   login(payload: { username: string; password: string; }) {
-    console.log("let me login ",payload)
       return this.http.post("http://localhost:8080/api/auth/login",payload);
   }
 

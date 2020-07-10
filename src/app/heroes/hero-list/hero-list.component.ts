@@ -1,5 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Hero } from 'src/app/core/model/hero';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'app-hero-list',
@@ -10,8 +18,10 @@ export class HeroListComponent implements OnInit {
 
   @Input() heroes: Hero[];
   @Input() selectedHero: Hero;
+  @Output() selected = new EventEmitter<Hero>();
+  @Output() deleted = new EventEmitter<Hero>();
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
 
   byId(hero: Hero) {
     return hero.id;
@@ -21,9 +31,30 @@ export class HeroListComponent implements OnInit {
   }
 
   select(hero: Hero) {
+    this.selected.emit(hero);
   }
+
   deleteHero(hero: Hero){
-    
-  }
+
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = '250px';
+      dialogConfig.data = {
+        title: 'Delete Hero',
+        message: `Do you want to delete ${hero.name}`
+      };
+
+      const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
+
+      dialogRef.afterClosed().subscribe(deleteIt => {
+        console.log('The dialog was closed');
+        if (deleteIt) {
+          this.deleted.emit(hero);
+        }
+      });
+    }
+
+
 
 }

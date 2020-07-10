@@ -27,10 +27,10 @@ export class HeroService {
   }
 
   deleteHero(HeroId: number): Observable<any> {
-    return this.http.delete(API_URL+'/api/hero' + HeroId);
+    return this.http.delete(API_URL+'/api/hero/'+ HeroId);
   }
 
   updateHero(HeroId: string | number, changes: Partial<Hero>): Observable<any> {
-    return this.http.put(API_URL+'/api/hero' + HeroId, changes);
+    return this.http.put(API_URL+'/api/hero/' + HeroId, changes);
   }
 }

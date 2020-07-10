@@ -11,7 +11,14 @@ Login Here
     <input matInput [(ngModel)]="loginRequest.password" name="password" />
   </mat-form-field>
   <br />
-  <button color="primary" mat-raised-button (click)="authentication()">
-    Login
-  </button>
+
+
+  <label
+  *ngIf="error$ | async"
+  [ngStyle]="{ color: 'red' }">Invalid Credentials</label>
+  <div>
+    <button color="primary" mat-raised-button (click)="authentication()">
+      Login
+    </button>
+  </div>
 </div>
