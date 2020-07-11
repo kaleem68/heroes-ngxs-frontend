@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { DisplayComponent } from './display/display.component';
 import { HeroesComponent } from './heroes/heroes/heroes.component';
 
 import { NgxsModule } from '@ngxs/store';
@@ -43,7 +42,6 @@ export function noop() {
 @NgModule({
   declarations: [
     AppComponent,
-    DisplayComponent,
     // HeroesComponent,
     LoginComponent,
     // HeroListComponent,
