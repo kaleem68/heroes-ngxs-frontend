@@ -1,38 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { MaterialModule } from '../app/material/material.module';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { HeroesComponent } from './heroes/heroes/heroes.component';
-
-import { NgxsModule } from '@ngxs/store';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
-
+import { NgxsModule } from '@ngxs/store';
 import { HeroState } from "../app/heroes/store/hero.state";
-import { HeroesModule } from './heroes/heroes.module';
-
-import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
-import { AuthState } from './shared/ngxs-store/authentication/auth.state';
-
-import { TokenInterceptorService } from '../app/shared/interceptors/token.interceptor.service';
-import { HeroListComponent } from './heroes/hero-list/hero-list.component';
-import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { environment } from '../environments/environment';
-import { APP_INITIALIZER } from '@angular/core';
-
-import { RouteHandler } from '../app/shared/ngxs-store/route/route.handler';
-import  { NgxsToasterService }  from '../app/shared//ngxs-store/toaster/ngxs.toaster.service'
-
+import { MaterialModule } from '../app/material/material.module';
 import { ModalComponent } from '../app/modal/modal.component';
+import { NgxsToasterService } from '../app/shared//ngxs-store/toaster/ngxs.toaster.service';
+import { TokenInterceptorService } from '../app/shared/interceptors/token.interceptor.service';
+import { RouteHandler } from '../app/shared/ngxs-store/route/route.handler';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AuthState } from './shared/ngxs-store/authentication/auth.state';
+import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 // Noop handler for factory function
 export function noop() {
@@ -42,10 +28,7 @@ export function noop() {
 @NgModule({
   declarations: [
     AppComponent,
-    // HeroesComponent,
     LoginComponent,
-    // HeroListComponent,
-    // HeroDetailComponent,
     ToolbarComponent,
     ModalComponent
   ],
@@ -76,6 +59,7 @@ export function noop() {
 
   ],
   providers: [
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     {
       provide: APP_INITIALIZER,

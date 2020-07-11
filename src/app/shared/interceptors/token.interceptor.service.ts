@@ -17,7 +17,6 @@ export class TokenInterceptorService implements HttpInterceptor {
     const authenticated = this.store.selectSnapshot(AuthState.isAuthenticated)
     const token = this.store.selectSnapshot(AuthState.token);
     if (authenticated) {
-      console.log('user is logged in appendning the token...')
       request = request.clone(
         {
           setHeaders: {

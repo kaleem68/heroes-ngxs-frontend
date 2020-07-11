@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { tap, catchError } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import {
   State,
@@ -10,9 +10,7 @@ import {
   Store
 } from '@ngxs/store';
 
-/**
- * AuthStateModel = AuthenticationResponse
- */
+
 export interface AuthStateModel {
   token: string | null;
   username: string | null;
@@ -87,7 +85,6 @@ export class AuthState {
 
   @Action(Logout)
   logout(ctx: StateContext<AuthStateModel>) {
-    const state = ctx.getState();
     ctx.setState({
       token: null,
       username: null,
