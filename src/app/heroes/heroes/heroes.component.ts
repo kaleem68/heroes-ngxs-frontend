@@ -1,18 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription, of } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { Hero } from 'src/app/core/model/hero';
-import { Store, Select, ofActionSuccessful, Actions } from '@ngxs/store'
-import {
-  AddHero, GetHeroes, DeleteHero, UpdateHero,
-} from '../store/hero.actions'
-import { HeroState } from '../store/hero.state';
-import { ToastService } from '../../shared/ngxs-store/toaster/toast.service';
-
-
-import { NgxsToasterService } from '../../shared/ngxs-store/toaster/ngxs.toaster.service';
-
-
+import { NgxsToasterService } from 'src/app/shared/ngxs-store/toaster/ngxs.toaster.service';
 import { SubSink } from 'subsink';
+import { AddHero, DeleteHero, GetHeroes, UpdateHero } from '../store/hero.actions';
+import { HeroState } from '../store/hero.state';
+
 
 @Component({
   selector: 'app-heroes',
@@ -29,8 +23,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
   @Select(HeroState.loading) loading$: Observable<boolean>;
 
   constructor(private store: Store,
-    private actions$: Actions,
-    private toastService: ToastService,
     private ngxsToasterService: NgxsToasterService
   ) { }
 
@@ -68,39 +60,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
     this.selected = null;
   }
 
-  showToaster() {
 
-    //heroes loading success
-    this.subs.sink =
-      this.actions$
-        .pipe(ofActionSuccessful(GetHeroes))
-        .subscribe(() => {
-          this.toastService.openSnackBar("Heroes Loaded..", GetHeroes.type);
-        })
-
-    //hero updated success
-    this.subs.sink =
-      this.actions$
-        .pipe(ofActionSuccessful(UpdateHero))
-        .subscribe(() => {
-          this.toastService.openSnackBar("Heroes Updated..", UpdateHero.type);
-        })
-
-    //hero added success
-    this.subs.sink =
-      this.actions$
-        .pipe(ofActionSuccessful(AddHero))
-        .subscribe(() => {
-          this.toastService.openSnackBar("Heroes Added..", AddHero.type);
-        })
-    //hero deleted success
-    this.subs.sink =
-      this.actions$
-        .pipe(ofActionSuccessful(DeleteHero))
-        .subscribe(() => {
-          this.toastService.openSnackBar("Heroes Deleted..", DeleteHero.type);
-        })
-  }
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
