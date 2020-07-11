@@ -12,13 +12,11 @@ import { Hero } from '../../core/model/hero';
 import { HeroService } from '../hero.service';
 import { Injectable } from '@angular/core';
 
-///avoid using classes for StateModel.
-export class HeroeStateModel {
+export interface HeroeStateModel {
   Heroes: Hero[];
   loading: boolean;
   error:boolean;
 }
-
 @State<HeroeStateModel>({
   name: 'Heroes',
   defaults: {
@@ -28,13 +26,10 @@ export class HeroeStateModel {
   }
 })
 
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class HeroState {
-
 
   constructor(private heroService: HeroService) { }
 
@@ -78,16 +73,12 @@ export class HeroState {
           console.log('error')
           return err;
         }),
-
       );
   }
 
   @Action(DeleteHero)
   deleteHero({ getState, setState }: StateContext<HeroeStateModel>,
     { id }: DeleteHero) {
-
-
-
     return this.heroService.deleteHero(id).pipe(
       tap(result => {
         const state = getState();
@@ -121,13 +112,12 @@ export class HeroState {
   }
 
   @Action(AddHero)
-  addTodo({ getState, patchState }: StateContext<HeroeStateModel>, { payload }: AddHero) {
+  addHero({ getState, patchState }: StateContext<HeroeStateModel>, { payload }: AddHero) {
     return this.heroService.createHero(payload).pipe(tap((result) => {
       const state = getState();
       patchState({
         Heroes: [...state.Heroes, result]
       });
-      // this.router.navigateByUrl('/heroes');
     }));
   }
 }

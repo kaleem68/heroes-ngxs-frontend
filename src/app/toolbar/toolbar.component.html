@@ -23,6 +23,7 @@
     </div>
 
     <a
+    *ngIf="isAuthenticated$ | async"
     (click)="logout();"
     mat-raised-button color="primary">Logout</a>
   </mat-toolbar-row>

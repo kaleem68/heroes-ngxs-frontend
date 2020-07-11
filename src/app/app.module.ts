@@ -18,6 +18,8 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 import { HeroState } from "../app/heroes/store/hero.state";
+import { HeroesModule } from './heroes/heroes.module';
+
 import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
 import { AuthState } from './shared/ngxs-store/authentication/auth.state';
 
@@ -42,10 +44,10 @@ export function noop() {
   declarations: [
     AppComponent,
     DisplayComponent,
-    HeroesComponent,
+    // HeroesComponent,
     LoginComponent,
-    HeroListComponent,
-    HeroDetailComponent,
+    // HeroListComponent,
+    // HeroDetailComponent,
     ToolbarComponent,
     ModalComponent
   ],
@@ -55,8 +57,10 @@ export function noop() {
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+
     FormsModule,
     ReactiveFormsModule,
+
 
     NgxsModule.forRoot([
       HeroState,

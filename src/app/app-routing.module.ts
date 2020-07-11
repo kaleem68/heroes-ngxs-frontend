@@ -5,6 +5,8 @@ import { AuthGuard } from './shared/guards/auth.guard'
 import { LoggedInGuard } from './shared/guards/logged.in.guard'
 import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
 
+
+
 const routes: Routes = [
 
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -15,8 +17,12 @@ const routes: Routes = [
   },
 
   {
+
     path: 'heroes',
+    loadChildren: () =>
+      import('./heroes/heroes.module').then(m => m.HeroesModule),
     component: HeroesComponent,
+
     canActivate: [AuthGuard]
   },
   {
