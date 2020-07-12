@@ -8,11 +8,9 @@ import { MaterialModule } from '../app/material/material.module';
 import { ModalComponent } from '../app/modal/modal.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-
-
+import { LoginComponent } from './authentication/login/login.component'
 
 @NgModule({
   declarations: [

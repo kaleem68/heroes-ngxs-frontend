@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpResponse, HttpRequest, HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store'
-import { AuthState } from '../ngxs-store/authentication/auth.state';
+import { AuthState } from '../../authentication/auth.state';
+
 
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HeroesComponent } from './heroes/heroes/heroes.component';
 import { AuthGuard } from './shared/guards/auth.guard'
 import { LoggedInGuard } from './shared/guards/logged.in.guard'
-import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { AuthState } from '../ngxs-store/authentication/auth.state';
+import { AuthState } from '../../authentication/auth.state';
 
 @Injectable()
 export class LoggedInGuard implements CanActivate {

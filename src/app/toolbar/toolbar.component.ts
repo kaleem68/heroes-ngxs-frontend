@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { Logout, AuthState } from '../shared/ngxs-store/authentication/auth.state';
 import { Observable } from 'rxjs';
+import { AuthState, Logout } from '../authentication/auth.state';
 
 @Component({
   selector: 'app-toolbar',

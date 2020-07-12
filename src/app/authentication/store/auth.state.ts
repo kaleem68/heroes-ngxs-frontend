@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
 import { tap } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 
 import {
   State,
