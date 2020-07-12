@@ -19,7 +19,7 @@ export const ENTITY_TYPE = {
     delete: DeleteHero
   }
 }
-@Injectable({ providedIn: 'root' })
+@Injectable()
 
 export class NgxsToasterService {
 
