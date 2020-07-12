@@ -3,10 +3,6 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Store } from '@ngxs/store';
 import { AuthState } from '../ngxs-store/authentication/auth.state';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private store: Store,private router: Router) {}
