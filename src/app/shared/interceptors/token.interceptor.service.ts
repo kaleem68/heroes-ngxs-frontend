@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store'
 import { AuthState } from '../ngxs-store/authentication/auth.state';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
 
   constructor(private store: Store) {}

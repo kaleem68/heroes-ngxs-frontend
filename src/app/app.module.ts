@@ -15,6 +15,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
+import { SharedModule } from './shared/shared.module';
 
 // Noop handler for factory function
 export function noop() {
@@ -34,13 +35,15 @@ export function noop() {
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AppStoreModule,
     FormsModule,
     ReactiveFormsModule,
 
+    AppStoreModule,
+    SharedModule
+
   ],
   providers: [
-        AuthGuard,
+        // AuthGuard,
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
         {
           provide: APP_INITIALIZER,
