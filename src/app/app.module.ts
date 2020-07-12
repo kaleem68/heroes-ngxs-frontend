@@ -6,16 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppStoreModule } from '../app/app-store/app.store.module';
 import { MaterialModule } from '../app/material/material.module';
 import { ModalComponent } from '../app/modal/modal.component';
-import { NgxsToasterService } from '../app/shared//ngxs-store/toaster/ngxs.toaster.service';
 import { TokenInterceptorService } from '../app/shared/interceptors/token.interceptor.service';
-// import { RouteHandler } from '../app/shared/ngxs-store/route/route.handler';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './shared/ngxs-store/authentication/login/login.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-
 import { SharedModule } from './shared/shared.module';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { NgxsToasterService } from '../app/shared/toaster/ngxs.toaster.service';
 
 // Noop handler for factory function
 export function noop() {

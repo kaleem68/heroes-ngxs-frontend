@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Hero } from 'src/app/core/model/hero';
-import { NgxsToasterService } from 'src/app/shared/ngxs-store/toaster/ngxs.toaster.service';
 import { SubSink } from 'subsink';
 import { AddHero, DeleteHero, GetHeroes, UpdateHero } from '../store/hero.actions';
 import { HeroState } from '../store/hero.state';
+import { NgxsToasterService } from 'src/app/shared/toaster/ngxs.toaster.service';
 
 
 @Component({

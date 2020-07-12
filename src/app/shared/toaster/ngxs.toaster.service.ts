@@ -7,9 +7,9 @@ import {
   DeleteHero,
   GetHeroes,
   UpdateHero
-} from '../../../heroes/store/hero.actions';
+} from '../../heroes/store/hero.actions'
 
-import { ToastService } from '../../../shared/ngxs-store/toaster/toast.service';
+import { ToastService } from '../toaster/toast.service'
 
 export const ENTITY_TYPE = {
   "HERO": {
