@@ -8,7 +8,7 @@ import { MaterialModule } from '../app/material/material.module';
 import { ModalComponent } from '../app/modal/modal.component';
 import { NgxsToasterService } from '../app/shared//ngxs-store/toaster/ngxs.toaster.service';
 import { TokenInterceptorService } from '../app/shared/interceptors/token.interceptor.service';
-import { RouteHandler } from '../app/shared/ngxs-store/route/route.handler';
+// import { RouteHandler } from '../app/shared/ngxs-store/route/route.handler';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared/guards/auth.guard';
@@ -43,12 +43,12 @@ export function noop() {
 
   ],
   providers: [
-        // AuthGuard,
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+
         {
           provide: APP_INITIALIZER,
           useFactory: noop,
-          deps: [RouteHandler,NgxsToasterService],
+          deps: [NgxsToasterService],
           multi: true
         }
   ],

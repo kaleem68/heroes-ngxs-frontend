@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Actions, ofActionDispatched, Store, ofActionSuccessful } from '@ngxs/store';
 import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
-import { Logout, Login } from '../authentication/auth.state';
+import { Logout, Login } from '../ngxs-store/authentication/auth.state'
 
 export class RouteNavigate {
   static readonly type = '[Component] Navigate Action ';
@@ -10,7 +10,7 @@ export class RouteNavigate {
   }
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class RouteHandler implements OnDestroy {
 
   private subs = new SubSink();
@@ -37,7 +37,6 @@ export class RouteHandler implements OnDestroy {
     });
 
   }
-
 
   ngOnDestroy() {
     this.subs.unsubscribe();

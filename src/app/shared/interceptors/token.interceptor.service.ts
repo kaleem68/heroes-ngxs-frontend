@@ -15,6 +15,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     const authenticated = this.store.selectSnapshot(AuthState.isAuthenticated)
     const token = this.store.selectSnapshot(AuthState.token);
     if (authenticated) {
+      console.log('let me add the token')
       request = request.clone(
         {
           setHeaders: {
@@ -22,6 +23,9 @@ export class TokenInterceptorService implements HttpInterceptor {
           }
         }
       )
+    }
+    else{
+      console.log('cannot add token you are not authenticated')
     }
     return next.handle(request);
   }
