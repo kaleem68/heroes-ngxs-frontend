@@ -14,7 +14,7 @@ import { ModalComponent } from './core/modal/modal.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent
+    // ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,7 @@ import { ModalComponent } from './core/modal/modal.component';
 
   ],
   providers: [],
-  entryComponents: [ModalComponent],
+  // entryComponents: [ModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

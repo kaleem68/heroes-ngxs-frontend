@@ -4,6 +4,7 @@ import { MaterialModule } from "../material/material.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { SharedModule } from "../shared/shared.module";
+import { ModalComponent } from "./modal/modal.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -13,8 +14,8 @@ import { SharedModule } from "../shared/shared.module";
 
   ],
   exports: [ToolbarComponent],
-  declarations: [ToolbarComponent],
-
+  declarations: [ToolbarComponent,ModalComponent],
+  entryComponents:[ModalComponent],
   providers: [],
  
 })
