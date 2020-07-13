@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Hero } from '../../core/model/hero';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalComponent } from '../../modal/modal.component';
+import { ModalComponent } from '../../core/modal/modal.component';
 
 @Component({
   selector: 'app-hero-list',

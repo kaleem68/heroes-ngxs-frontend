@@ -5,11 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppStoreModule } from '../app/app-store/app.store.module';
 import { MaterialModule } from '../app/material/material.module';
-import { ModalComponent } from '../app/modal/modal.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { ModalComponent } from './core/modal/modal.component';
 
 @NgModule({
   declarations: [
