@@ -10,12 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { LoginComponent } from './authentication/login/login.component'
-
+import { HeroesModule } from './heroes/heroes.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     ToolbarComponent,
     ModalComponent
   ],
@@ -28,6 +26,7 @@ import { LoginComponent } from './authentication/login/login.component'
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+HeroesModule,
 
     AppStoreModule,
     SharedModule

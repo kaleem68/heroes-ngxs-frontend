@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, ofActionDispatched, ofActionSuccessful, Store } from '@ngxs/store';
 import { SubSink } from 'subsink';
-import { Logout, Login } from '../../authentication/auth.state';
+import { Logout, Login } from '../../authentication/store/auth.state';
 
 export class RouteNavigate {
   static readonly type = '[Component] Navigate Action ';

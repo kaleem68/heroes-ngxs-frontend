@@ -1,10 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
-
-import { Store, Select } from '@ngxs/store'
-import { Login } from '../auth.state';
-
-import { AuthState } from '../auth.state';
+import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { AuthState, Login } from '../store/auth.state';
+
 
 export class LoginRequest {
   username: string;

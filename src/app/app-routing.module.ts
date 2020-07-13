@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HeroesComponent } from './heroes/heroes/heroes.component';
-import { AuthGuard } from './shared/guards/auth.guard'
-import { LoggedInGuard } from './shared/guards/logged.in.guard'
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentication/login/login.component';
-
+import { AuthGuard } from './shared/guards/auth.guard';
+import { LoggedInGuard } from './shared/guards/logged.in.guard';
 
 
 const routes: Routes = [
 
   { path: '', pathMatch: 'full', redirectTo: 'login' },
+    
+
   {
     path: 'login',
-    component: LoginComponent,
-    canActivate: [LoggedInGuard]
-  },
 
+    loadChildren: () =>
+    import('./authentication/auth.module').then(m => m.AuthModule),
+    canActivate: [LoggedInGuard]
+  }
+  ,
   {
 
     path: 'heroes',
     loadChildren: () =>
       import('./heroes/heroes.module').then(m => m.HeroesModule),
-    component: HeroesComponent,
-
     canActivate: [AuthGuard]
   },
   {

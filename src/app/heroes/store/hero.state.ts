@@ -26,7 +26,8 @@ export interface HeroeStateModel {
   }
 })
 
-@Injectable({
+// should be provided in the app.store.module
+@Injectable({ 
   providedIn: 'root'
 })
 export class HeroState {

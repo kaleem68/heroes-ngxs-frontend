@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { Hero } from 'src/app/core/model/hero';
+import { Hero } from '../../core/model/hero';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../../modal/modal.component';
 

@@ -6,10 +6,7 @@ import { Hero } from '../core/model/hero';
 
 export const API_URL = "http://localhost:8080";
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable()
 export class HeroService {
 
   http: HttpClient;

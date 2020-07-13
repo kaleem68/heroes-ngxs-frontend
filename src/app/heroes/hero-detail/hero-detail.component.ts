@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges, OnChanges } from '@angular/core';
-import { Hero } from 'src/app/core/model/hero';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Hero } from '../../core/model/hero';
 
 @Component({
   selector: 'app-hero-detail',
