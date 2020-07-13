@@ -9,12 +9,11 @@ import { ModalComponent } from '../app/modal/modal.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { HeroesModule } from './heroes/heroes.module';
-import { ToolbarComponent } from './core/toolbar/toolbar.component';
+import { CoreModule } from './core/core.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
     ModalComponent
   ],
   imports: [
@@ -26,9 +25,9 @@ import { ToolbarComponent } from './core/toolbar/toolbar.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-HeroesModule,
 
     AppStoreModule,
+    CoreModule,
     SharedModule
 
   ],
