@@ -9,8 +9,8 @@ import { ModalComponent } from '../app/modal/modal.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HeroesModule } from './heroes/heroes.module';
+import { ToolbarComponent } from './core/toolbar/toolbar.component';
 @NgModule({
   declarations: [
     AppComponent,
