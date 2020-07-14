@@ -14,7 +14,9 @@ export class TokenInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const authenticated = this.store.selectSnapshot(AuthState.isAuthenticated)
+
     const token = this.store.selectSnapshot(AuthState.token);
+    
     if (authenticated) {
       console.log('let me add the token')
       request = request.clone(

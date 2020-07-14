@@ -11,13 +11,15 @@ import { tap } from 'rxjs/operators';
 import { Hero } from '../../core/model/hero';
 import { HeroService } from '../hero.service';
 import { Injectable } from '@angular/core';
+import { state } from '@angular/animations';
 
+//dont make this as class
 export interface HeroeStateModel {
   Heroes: Hero[];
   loading: boolean;
   error:boolean;
 }
-@State<HeroeStateModel>({
+@State<HeroeStateModel>({ //initial state
   name: 'Heroes',
   defaults: {
     Heroes: [],
@@ -26,7 +28,6 @@ export interface HeroeStateModel {
   }
 })
 
-// should be provided in the app.store.module
 @Injectable({ 
   providedIn: 'root'
 })
@@ -53,13 +54,13 @@ export class HeroState {
   @Action(GetHeroes)
   getHeroes({ getState, setState, patchState }: StateContext<HeroeStateModel>) {
 
-    patchState({
+    patchState({ //upating stating
       loading: true
     });
 
 
     return this.heroService.getAllHeroes()
-      .pipe(delay(1000))
+      .pipe(delay(1000)) //fake delay
       .pipe(
         tap(result => {
           const state = getState();
@@ -80,15 +81,21 @@ export class HeroState {
   @Action(DeleteHero)
   deleteHero({ getState, setState }: StateContext<HeroeStateModel>,
     { id }: DeleteHero) {
-    return this.heroService.deleteHero(id).pipe(
+    return this.heroService.deleteHero(id).pipe( //ok 200
       tap(result => {
         const state = getState();
-        const filteredArray = state.Heroes.filter(item => item.id !== id);
+        const filteredArray = state.Heroes.filter(item => item.id !== id); 
+      //...state
+      //ill explain ...state
+      /// i told u state is immutable so we need to clone the state that is to create new object with same properties
+      // soo ...state creates new instance of the state with same properties
+      
         setState({
-          ...state,
+          ...state, //dont remove ...
           Heroes: filteredArray,
         });
-      })
+      }
+      )
     );
   }
 

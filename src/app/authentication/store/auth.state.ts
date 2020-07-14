@@ -47,7 +47,7 @@ export class AuthState {
   }
   @Selector()
   static isAuthenticated(state: AuthStateModel): boolean {
-    return !!state.token;
+    return !!state.token; // converts a boolean of type token to an observble of boolean
   }
   @Selector()
   static error(state: AuthStateModel) {
